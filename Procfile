@@ -1,1 +1,1 @@
-gunicorn --bind 0.0.0.0:80 run:index
+web: gunicorn deploy: index

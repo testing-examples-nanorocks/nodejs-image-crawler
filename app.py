@@ -1,4 +1,3 @@
-
 import webScanner
 from flask import Flask, render_template
 import gc
@@ -35,4 +34,4 @@ def search(word=None):
 
 if __name__ == '__main__':
     URL = "https://www.pexels.com"
-    app.run()
+    app.run(debug=True, use_reloader=True)
