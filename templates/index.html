@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{{pageTitle}}</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style>
+        .no-js #loader {
+            display: none;
+        }
+        .js #loader {
+            display: block; position: absolute; left: 100px; top: 0;
+        }
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url({{ url_for('static', filename='img/Preloader_2.gif') }}) center no-repeat #fff;
+        }
+
+        /* label color */
+        .input-field label {
+          color: #000;
+        }
+        /* label focus color */
+        .input-field input[type=text]:focus + label {
+          color: #000;
+        }
+        /* label underline focus color */
+        .input-field input[type=text]:focus {
+          border-bottom: 1px solid #000;
+          box-shadow: 0 1px 0 0 #000;
+        }
+        /* valid color */
+        .input-field input[type=text].valid {
+          border-bottom: 1px solid #000;
+          box-shadow: 0 1px 0 0 #000;
+        }
+        /* invalid color */
+        .input-field input[type=text].invalid {
+          border-bottom: 1px solid #000;
+          box-shadow: 0 1px 0 0 #000;
+        }
+        /* icon prefix focus color */
+        .input-field .prefix.active {
+          color: #000;
+        }
+        body{
+          overflow-x: hidden;
+        }
+
+  </style>
+</head>
+<body>
+    <!-- Paste this code after body tag -->
+	<div class="se-pre-con"></div>
+	<!-- Ends -->
+
+
+  <div class="navbar-fixed">
+    <nav class="white" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo left" style="font-weight:bold">ImagesApp</a>
+        <ul class="right ">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="#" class="focusMe">Search</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center blue-text text-darken-2 " style="text-shadow: 2px 2px white; font-size:380%;">Free images to download</h1>
+        <div class="row center">
+          <h5 class="header col s12 text-darken-4 hide-on-med-and-down" ><span style="font-weight:bold;">ImagesApp</span> with TOP categories</h5>
+        </div>
+        <div class="row center">
+            <div class="col s12 m12 center">
+                <a href="/search/working" class="waves-effect waves-light btn blue" style="margin-bottom:4px;"><i class="material-icons small">account_circle</i> working</a>
+                <a href="/search/love" class="waves-effect waves-light btn blue" style="margin-bottom:4px;"><i class="material-icons small">favorite</i> love</a>
+                <a href="/search/tools" class="waves-effect waves-light btn blue" style="margin-bottom:4px;"><i class="material-icons small">build</i> tools</a>
+                <a href="/search/website" class="waves-effect waves-light btn blue" style="margin-bottom:4px;"><i class="material-icons small">web</i> website</a>
+                <a href="/search/woman" class="waves-effect waves-light btn blue" style="margin-bottom:4px;"><i class="material-icons small">wc</i>Woman</a>
+                <a href="/search/nature" class="waves-effect waves-light btn blue" style="margin-bottom:4px;"><i class="material-icons small">nature_people</i> nature</a>
+                <a href="/search/school" class="waves-effect waves-light btn blue" style="margin-bottom:4px;"><i class="material-icons small">school</i> school</a>
+                <a href="/search/programming" class="waves-effect waves-light btn blue" style="margin-bottom:4px;"><i class="material-icons small">computer</i> programming</a>
+            </div>
+        </div>
+            <a name="searchword"></a>
+        <br><br>
+      </div>
+    </div>
+    <div class="parallax"><img src="{{ url_for('static', filename='img/background1.jpg') }}" alt="Unsplashed background img 1"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <!--   Icon Section   -->
+      <div class="row">
+          <div class="input-field col s10">
+              <input type="text" class="validate" id="input_search">
+              <label for="input_search">Search category...</label>
+          </div>
+          <div class="input-field col s2">
+              <a href="/" id="search_button" class="btn-floating btn-large waves-effect waves-light blue lighten-1"><i class="material-icons">search</i></a>
+          </div>
+      </div>
+      <div class="row">
+          {% if dataFound is defined() %}
+                 <h1>{{dataFound}}</h1>
+          {% else %}
+             {% if not images %}
+                 <h1>Nothing found here.</h1>
+             {% endif %}
+
+            {% for i in images%}
+
+
+                <div class="col s6 m3" style="margin-top:10px;">
+                  <div class="card">
+                      <div class="card-image">
+                        <img class="materialboxed" src="{{i.link}}" data-caption="{{i.title}}" style="height:200px !important;">
+                      </div>
+                      <div class="card-content">
+                          <!--
+                          <label>Select dimensions:</label>
+                          <select class="browser-default">
+                            <option value="?auto=compress&cs=tinysrgb&fit=crop&h=650&w=940">650 x 940</option>
+                            <option value="?auto=compress&cs=tinysrgb&fit=crop&h=1024&w=768">1024 x 768</option>
+                            <option value="?auto=compress&cs=tinysrgb&fit=crop&h=1280&w=1024" selected>1280 x 1024</option>
+                            <option value="?auto=compress&cs=tinysrgb&fit=crop&h=1920&w=1080">1920 x 1080</option>
+                          </select>
+                          -->
+                          <div style="text-align:center">
+                            <a href="{{i.link}}&cs=srgb&dl=image.jpg&fm=jpg" class="downloadMe">DOWNLOAD</a>
+                          </div>
+                      </div>
+                    </div>
+              </div>
+
+            {% endfor %}
+          {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">How it works?</h5>
+          <p class="grey-text text-lighten-4">
+              ImagesApp is modern web scanner that find FREE HQ images around web. One more step to crawl the web. :)
+          </p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Menu</h5>
+          <ul>
+            <li><a class="white-text" href="/">Home</a></li>
+            <li><a class="white-text" href="/about">About</a></li>
+            <li><a class="white-text focusMe">Search</a></li>
+
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Find nanorocks</h5>
+          <ul>
+            <li><a class="white-text" href="https://pastebin.com/u/nanorocks">Pastebin</a></li>
+            <li><a class="white-text" href="https://github.com/nanorocks">Github</a></li>
+            <li><a class="white-text" href="https://github.com/nanorocks">Linkedin</a></li>
+            <li><a class="white-text" href="https://canvasgamer.github.io/">CanvasGamer</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <a class="black-text text-lighten-3" href="#">Copyright © 2018 </a>
+        <a class="black-text text-lighten-3 right" href="#"> Made by nanorocks with materialize.css</a>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+  <script>
+    $(window).load(function() {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");
+    });
+
+  $(document).ready(function(){
+
+    $('.materialboxed').materialbox();
+    $('.sidenav').sidenav();
+
+    $('.focusMe').click(function(){
+       $('#input_search').focus();
+    });
+
+    $("#input_search").keyup(function(e){
+
+        in_val = $(this).val()
+        if(in_val == "" || in_val == " " || in_val == null)
+        {
+            $("a").attr("href", "/")
+        }else{
+
+            $("a").attr("href", "/search/"+in_val+"#searchword")
+        }
+    });
+
+     $("#input_search").keypress(function(e){
+        if(e.keyCode === 13){
+
+                in_val = $(this).val()
+                if(in_val == "" || in_val == " " || in_val == null)
+                {
+                   $("a").attr("href", "/");
+                   window.location.href = "/";
+
+                }else{
+
+                    $("a").attr("href", "/search/"+in_val+"#searchword");
+                    window.location.href = "/search/"+in_val+"#searchword";
+                }
+        }
+
+    });
+
+  });
+  </script>
+  </body>
+</html>

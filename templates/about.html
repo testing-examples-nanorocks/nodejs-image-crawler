@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ImagesApp</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style>
+        /* label color */
+        .input-field label {
+          color: #000;
+        }
+        /* label focus color */
+        .input-field input[type=text]:focus + label {
+          color: #000;
+        }
+        /* label underline focus color */
+        .input-field input[type=text]:focus {
+          border-bottom: 1px solid #000;
+          box-shadow: 0 1px 0 0 #000;
+        }
+        /* valid color */
+        .input-field input[type=text].valid {
+          border-bottom: 1px solid #000;
+          box-shadow: 0 1px 0 0 #000;
+        }
+        /* invalid color */
+        .input-field input[type=text].invalid {
+          border-bottom: 1px solid #000;
+          box-shadow: 0 1px 0 0 #000;
+        }
+        /* icon prefix focus color */
+        .input-field .prefix.active {
+          color: #000;
+        }
+        body{
+          overflow-x: hidden;
+        }
+
+  </style>
+</head>
+<body>
+    <div class="navbar-fixed">
+        <nav class="white" role="navigation">
+          <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo left" style="font-weight:bold">ImagesApp</a>
+            <ul class="right ">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/" >Search</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+
+      <div class="container">
+        <div class="section">
+
+          <div class="row">
+            <div class="col s12">
+              <h3><i class="mdi-content-send brown-text"></i></h3>
+              <h4 class="center">About</h4>
+              <p>
+                  <h6>
+                    <strong>As a student</strong> at a technical faculty of computer science, I was always curious about the web and my possibilities. I concluded that the web has no limit on how it will develop and how it will serve in the future. This project is a small part of the web that will serve as a high-resolution imaging service.
+                  </h6>
+                  <h6>
+                    The background algorithm is inspired by the Google search engine itself today. I used Python and a number of modules to develop this project. There is not much to discover how this algorithm works, except I will say that the application code will be publicly available on <a href="https://github.com/nanorocks ">GITHUB</a> in order to increase the open-source world.
+                  </h6>
+                  <h6>
+                    I encourage all students and people who have a passion for technology and web, to join in the development of advanced and modern applications that will offer us a simple solution and a better life for all of as.
+                    I wish you all the best.
+                  </h6>
+
+                  <p class="right">  Greetings from nanorocks  </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <footer class="page-footer blue">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">How it works?</h5>
+                <p class="grey-text text-lighten-4">
+                    ImagesApp is modern web scanner that find FREE HQ images around web. One more step to crawl the web. :)
+                </p>
+              </div>
+              <div class="col l3 s12">
+                <h5 class="white-text">Menu</h5>
+                <ul>
+                  <li><a class="white-text" href="/">Home</a></li>
+                  <li><a class="white-text" href="/about">About</a></li>
+                  <li><a class="white-text focusMe" href="/">Search</a></li>
+                </ul>
+              </div>
+              <div class="col l3 s12">
+                <h5 class="white-text">Find nanorocks</h5>
+                <ul>
+                  <li><a class="white-text" href="https://pastebin.com/u/nanorocks">Pastebin</a></li>
+                  <li><a class="white-text" href="https://github.com/nanorocks">Github</a></li>
+                  <li><a class="white-text" href="https://github.com/nanorocks">Linkedin</a></li>
+                  <li><a class="white-text" href="https://canvasgamer.github.io/">CanvasGamer</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+              <a class="black-text text-lighten-3" href="#">Copyright © 2018 </a>
+              <a class="black-text text-lighten-3 right" href="#"> Made by nanorocks with materialize.css</a>
+            </div>
+          </div>
+        </footer>
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+      <script>
+          $(document).ready(function(){
+            $('.materialboxed').materialbox();
+          });
+
+      </script>
+
+      </body>
+    </html>
