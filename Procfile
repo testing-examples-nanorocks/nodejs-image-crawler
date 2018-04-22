@@ -1,1 +1,1 @@
-web: gunicorn deploy: index
+web: gunicorn -b :$PORT app:index
