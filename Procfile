@@ -1,1 +1,1 @@
-web: gunicorn deploy: index
+web: gunicorn index:app --log-file -
