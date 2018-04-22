@@ -35,4 +35,4 @@ def search(word=None):
 
 if __name__ == '__main__':
     URL = "https://www.pexels.com"
-    app.run(debug=False)
+    app.run()
