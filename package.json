@@ -1,0 +1,26 @@
+{
+  "name": "image-crawler-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prod": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nanorocks/image-crawler-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nanorocks/image-crawler-app/issues"
+  },
+  "homepage": "https://github.com/nanorocks/image-crawler-app#readme",
+  "dependencies": {
+    "chowdown": "^1.2.5",
+    "crawler": "^1.3.0",
+    "express": "^4.17.1"
+  }
+}
