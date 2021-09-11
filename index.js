@@ -1,17 +1,18 @@
 const express = require("express");
 const app = express();
 const crawler = require("./crawler");
+const morgan = require("morgan");
+
+morgan("tiny");
 
 app.use(express.static("json"));
 
 app.get("/", (req, res) => {
-  crawler();
-  res.json(require('./json/index.json'))
+  crawler('', res, 'index')
 });
 
 app.get("/search/:word", (req, res) => {
-  crawler("/search/" + req.params.word);
-  res.json(require("./json/search.json"));
+  crawler("/search/" + req.params.word, res, req.params.word);
 });
 
 app.listen(3000, () => {

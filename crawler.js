@@ -1,7 +1,15 @@
 const Crawler = require("crawler");
 const fs = require("fs");
+const NodeCache = require("node-cache");
+const myCache = new NodeCache();
 
-module.exports = function (param = "") {
+module.exports = function (param = "", response, flag='index') {
+
+    if (myCache.has(flag)) {
+      response.json(myCache.take(flag));
+      return;
+    } 
+    
     Arr = [];
 
     const c = new Crawler({
@@ -13,11 +21,9 @@ module.exports = function (param = "") {
             }
 
             fuSelector(res, Arr);
-
-            fs.writeFileSync(
-              param === "" ? "json/index.json" : "json/search.json",
-              JSON.stringify(Arr)
-            );
+            console.log('We crawl again !!!');
+            myCache.set(flag, Arr, 20000);
+            response.json(Arr);
 
             done();
         },
@@ -28,6 +34,12 @@ module.exports = function (param = "") {
         $(".photo-grid-item")
             .find("a img")
             .each((index, item) => {
+
+                if(index % 2 !== 0)
+                {
+                    return;
+                }
+
                 let photo =
                     item.attribs.src === undefined
                         ? item.attribs["data-cfsrc"]
